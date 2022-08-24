@@ -77,6 +77,8 @@ function guardarPelicula(e) {
   guardarPeliculasEnLocalStorage();
   //limpiar formulario
   limpiarFormulario();
+  //dibujar la fila en la tabla
+  crearFila(nuevaPelicula);
   //cerrar la ventana modal
   modalPelicula.hide();
 }
