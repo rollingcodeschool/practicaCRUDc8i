@@ -42,7 +42,7 @@ function crearFila(pelicula){
     ${pelicula.genero}
   </td>
   <td>
-    <button type="button" class="btn btn-danger">
+    <button type="button" class="btn btn-danger" onclick="borrarPelicula('${pelicula.codigo}')">
       <i class="bi bi-file-x-fill colorIncono fs-5"></i>
     </button>
     <button type="button" class="btn btn-warning mt-2">
@@ -94,4 +94,23 @@ function limpiarFormulario() {
 
 function guardarPeliculasEnLocalStorage(){
   localStorage.setItem('listaPeliculasKey', JSON.stringify(listaPeliculas))
+}
+
+
+window.borrarPelicula = function (codigo){
+  console.log(codigo)
+  //buscar la pelicula con el codigo indicado en el arreglo y borrarlo
+  let copiaListaPeliculas = listaPeliculas.filter((pelicula)=>{return pelicula.codigo != codigo});
+  console.log(copiaListaPeliculas);
+  listaPeliculas = copiaListaPeliculas;
+  //actualizar el localstorage
+  guardarPeliculasEnLocalStorage();
+  //actualizar la tabla
+  borrarTabla();
+  cargarInicial();
+}
+
+function borrarTabla(){
+  let tablaPeliculas = document.querySelector('#tablaPeliculas');
+  tablaPeliculas.innerHTML ='';
 }
