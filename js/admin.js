@@ -59,7 +59,7 @@ function crearFila(pelicula) {
 
 function mostrarFormulario() {
   peliculaNueva = true;
-
+  limpiarFormulario();
   modalPelicula.show();
   //mostrar el identificador unico cargado
   codigo.value = uuidv4();
@@ -157,6 +157,7 @@ function borrarTabla() {
 
 window.editarPelicula = function (codigoBuscado) {
   peliculaNueva = false;
+  limpiarFormulario();
   //buscar del arreglo de peliculas la pelicula seleccionada
   // let peliculaBuscada = listaPeliculas.find((pelicula)=>{return pelicula.codigo === codigo});
   let peliculaBuscada = listaPeliculas.find(
@@ -191,5 +192,12 @@ function actualizarPelicula() {
 
   //cerrar la ventana modal
   modalPelicula.hide();
-  
+  limpiarFormulario();
+  //indicarle lo que sucedio al usuario
+  Swal.fire(
+    "Pelicula modificada",
+    "La pelicula seleccionada fue correctamente modificada",
+    "success"
+  );
+
 }
