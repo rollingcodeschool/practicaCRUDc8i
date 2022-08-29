@@ -1,6 +1,7 @@
 import { Pelicula } from "./classPelicula.js";
 
-let listaPeliculas = JSON.parse(localStorage.getItem('listaPeliculasKey')) || [];
+let listaPeliculas =
+  JSON.parse(localStorage.getItem("listaPeliculasKey")) || [];
 
 //codigo para instanciar una ventana modal formularioPelicula
 const modalPelicula = new bootstrap.Modal(
@@ -20,16 +21,18 @@ formulario.addEventListener("submit", guardarPelicula);
 
 cargarInicial();
 
-//muestre la tabla con datos 
-function cargarInicial(){
-  if(listaPeliculas.length >0){
+//muestre la tabla con datos
+function cargarInicial() {
+  if (listaPeliculas.length > 0) {
     //dibujar filas de la tabla
-    listaPeliculas.forEach((itemPelicula)=>{crearFila(itemPelicula)})
+    listaPeliculas.forEach((itemPelicula) => {
+      crearFila(itemPelicula);
+    });
   }
 }
 
-function crearFila(pelicula){
-  let tablaPeliculas = document.querySelector('#tablaPeliculas');
+function crearFila(pelicula) {
+  let tablaPeliculas = document.querySelector("#tablaPeliculas");
   tablaPeliculas.innerHTML += `<tr>
   <th scope="row">${pelicula.codigo}</th>
   <td>${pelicula.titulo}</td>
@@ -49,7 +52,7 @@ function crearFila(pelicula){
       <i class="bi bi-pencil-square fs-5"></i>
     </button>
   </td>
-</tr>`
+</tr>`;
 }
 
 function mostrarFormulario() {
@@ -92,25 +95,43 @@ function limpiarFormulario() {
   imagen.className = "form-control";
 }
 
-function guardarPeliculasEnLocalStorage(){
-  localStorage.setItem('listaPeliculasKey', JSON.stringify(listaPeliculas))
+function guardarPeliculasEnLocalStorage() {
+  localStorage.setItem("listaPeliculasKey", JSON.stringify(listaPeliculas));
 }
 
+window.borrarPelicula = function (codigo) {
+  console.log(codigo);
+  Swal.fire({
+    title: "Eliminar pelicula",
+    text: "Esta seguro de eliminar la pelicula seleccionada, no se puede revertir este paso",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Borrar",
+    CancelButtonText: "Cancelar",
+  }).then((result) => {
+    console.log(result);
+    if (result.isConfirmed) {
+      //agregar el codigo para borrar la pelicula
+      //buscar la pelicula con el codigo indicado en el arreglo y borrarlo
+      let copiaListaPeliculas = listaPeliculas.filter((pelicula) => {
+        return pelicula.codigo != codigo;
+      });
+      console.log(copiaListaPeliculas);
+      listaPeliculas = copiaListaPeliculas;
+      //actualizar el localstorage
+      guardarPeliculasEnLocalStorage();
+      //actualizar la tabla
+      borrarTabla();
+      cargarInicial();
 
-window.borrarPelicula = function (codigo){
-  console.log(codigo)
-  //buscar la pelicula con el codigo indicado en el arreglo y borrarlo
-  let copiaListaPeliculas = listaPeliculas.filter((pelicula)=>{return pelicula.codigo != codigo});
-  console.log(copiaListaPeliculas);
-  listaPeliculas = copiaListaPeliculas;
-  //actualizar el localstorage
-  guardarPeliculasEnLocalStorage();
-  //actualizar la tabla
-  borrarTabla();
-  cargarInicial();
-}
+      Swal.fire("Pelicula eliminada", "La pelicula seleccionada fue correctamente eliminada", "success");
+    }
+  });
+};
 
-function borrarTabla(){
-  let tablaPeliculas = document.querySelector('#tablaPeliculas');
-  tablaPeliculas.innerHTML ='';
+function borrarTabla() {
+  let tablaPeliculas = document.querySelector("#tablaPeliculas");
+  tablaPeliculas.innerHTML = "";
 }
