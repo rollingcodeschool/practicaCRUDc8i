@@ -17,14 +17,14 @@
       integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
     <title>Crud Peliculas</title>
   </head>
   <body>
     <header>
       <nav class="navbar navbar-expand-lg bg-dark">
         <div class="container">
-          <a class="navbar-brand text-light" href="#">Peliculas</a>
+          <a class="navbar-brand text-light" href="../index.html">Peliculas</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -40,14 +40,17 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <a
-                  class="nav-link active text-light"
+                  class="nav-link text-light"
                   aria-current="page"
-                  href="#"
+                  href="../index.html"
                   >Inicio</a
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link text-light" href="/pages/administrador.html">Administrador</a>
+                <a class="nav-link text-light" href="./administrador.html">Administrador</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light active" href="./detalle.html">Detalle</a>
               </li>
             </ul>
           </div>
@@ -55,25 +58,10 @@
       </nav>
     </header>
     <main>
-      <h1 class="display-4 mt-5 text-center">Lista de Series</h1>
+      <h1 class="display-4 mt-5 text-center">Detalle de pelicula</h1>
       <hr />
-      <section class="container">
-        <article class="row" id="grilla">
-          <!-- <article class="col-12 col-md-6 col-lg-3 my-2">
-            <div class="card mx-2">
-              <img
-                src="https://pics.filmaffinity.com/thor_love_and_thunder-566116133-large.jpg"
-                class="card-img-top"
-                alt="Thor amor y trueno"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Thor Love and Thunder</h5>
-                <a href="#" class="btn btn-primary">Ver detalles</a>
-              </div>
-            </div>
-          </article> -->
-        
-        </article>
+      <section class="container my-5" id="seccionDetalle">
+       
       </section>
     </main>
     <footer class="py-4 bg-dark text-light text-center">
@@ -85,6 +73,6 @@
       integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
       crossorigin="anonymous"
     ></script>
-  <script src="./js/paginaPrincipal.js"></script>
+  <script src="../js/detallePelicula.js"></script>
   </body>
 </html>
